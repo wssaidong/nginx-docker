@@ -13,6 +13,7 @@ jQuery(function() {
         // 文件总体选择信息。
         $info = $statusBar.find('.info'),
 
+        $urls = $statusBar.find('.urls'),
         // 上传按钮
         $upload = $wrap.find('.uploadBtn'),
 
@@ -410,6 +411,11 @@ jQuery(function() {
     uploader.onError = function( code ) {
         alert( 'Eroor: ' + code );
     };
+
+    uploader.on('uploadSuccess', function(file, res){
+        console.log('in', file, res)
+        $urls.append( '<a>'+'http:'+res.url+'</a></br>' );
+    })
 
     $upload.on('click', function() {
         if ( $(this).hasClass( 'disabled' ) ) {
