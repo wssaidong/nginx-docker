@@ -13,7 +13,7 @@ jQuery(function() {
         // 文件总体选择信息。
         $info = $statusBar.find('.info'),
 
-        $urls = $statusBar.find('.urls'),
+        $urls =  $('#page-container').find('.urls'),
         // 上传按钮
         $upload = $wrap.find('.uploadBtn'),
 
@@ -83,7 +83,7 @@ jQuery(function() {
 
         chunked: true,
         // server: 'http://webuploader.duapp.com/server/fileupload.php',
-        server: 'http://capi.laystall.top/ms/api/file',
+        server: 'http://119.29.232.163:9761/x/api/file?dir=pick',
         fileNumLimit: 300,
         fileSizeLimit: 5 * 1024 * 1024,    // 200 M
         fileSingleSizeLimit: 1 * 1024 * 1024    // 50 M
@@ -342,7 +342,7 @@ jQuery(function() {
             case 'finish':
                 stats = uploader.getStats();
                 if ( stats.successNum ) {
-                    alert( '上传成功' );
+                    console.log( '上传成功' );
                 } else {
                     // 没有成功的图片，重设
                     state = 'done';
@@ -413,8 +413,7 @@ jQuery(function() {
     };
 
     uploader.on('uploadSuccess', function(file, res){
-        console.log('in', file, res)
-        $urls.append( '<a>'+'http:'+res.url+'</a></br>' );
+        $urls.append( '<input class="form-control" type="text" placeholder="Default input" value=http:'+res.url+'>' );
     })
 
     $upload.on('click', function() {
